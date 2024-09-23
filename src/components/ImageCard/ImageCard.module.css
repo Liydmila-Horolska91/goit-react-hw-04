@@ -1,0 +1,18 @@
+.card {
+    min-width: 300px;
+    max-width: 300px;
+    height: 200px;
+    border: 3px solid #1b4d3e;
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
