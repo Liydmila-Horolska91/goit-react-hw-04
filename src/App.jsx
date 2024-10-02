@@ -27,8 +27,6 @@ export default function App() {
           const data = await fetchPhotos(page, query);
           setPhotos((prev) => [...prev, ...data.results]);
         }
-
-        return;
       } catch {
         setError(true);
       } finally {
@@ -48,17 +46,16 @@ export default function App() {
     setPage(1);
   };
 
-  const openModal = () => {
-    setIsOpen(true);
+  // Об'єднана функція toggleModal
+  const toggleModal = (isOpen) => {
+    setIsOpen(isOpen);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
+  // Функція для налаштування змісту модалки і відкриття модалки
   const handleModalContent = (src, alt) => {
     setModalImage(src);
     setAlt(alt);
+    toggleModal(true);
   };
 
   return (
@@ -67,8 +64,7 @@ export default function App() {
       {photos.length > 0 && (
         <ImageGallery
           photos={photos}
-          openModal={openModal}
-          modalContent={handleModalContent}
+          onImageClick={handleModalContent} // Змінили пропс з openModal на onImageClick
         />
       )}
       {loader && <Loader />}
@@ -76,7 +72,7 @@ export default function App() {
       {photos.length > 0 && <LoadMoreBtn handleClick={handleChangePage} />}
       <ImageModal
         openModal={modalIsOpen}
-        closeModal={closeModal}
+        closeModal={() => toggleModal(false)} // Використовуємо toggleModal для закриття модалки
         src={modalImage}
         alt={alt}
       />
