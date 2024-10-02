@@ -52,7 +52,7 @@ export default function App() {
   };
 
   // Функція для налаштування змісту модалки і відкриття модалки
-  const handleModalContent = (src, alt) => {
+  const handleModalContent = (src) => {
     setModalImage(src);
     setAlt(alt);
     toggleModal(true);
